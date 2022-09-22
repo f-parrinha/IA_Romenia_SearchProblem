@@ -135,6 +135,10 @@ public class Graph {
 		return n;
 	}
 
+	public Node searchSolution(String intitLabel, String midLabel, String goalLabel, Algorithms algID){
+		return null;
+	}
+
 	public void showSolution(Node n) {
 		System.out.println("******************* SOLUTION ********************");
 		System.out.println("Node Expansions: " + this.expansions);
