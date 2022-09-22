@@ -135,7 +135,38 @@ public class Graph {
 		return n;
 	}
 
-	public Node searchSolution(String intitLabel, String midLabel, String goalLabel, Algorithms algID){
+	public Node searchSolution(String initLabel, String midLabel, String goalLabel, Algorithms algID){
+
+		// Initial states and TODO: mid region
+		State init = new State(this.getVertex(initLabel));
+		State goal = new State(this.getVertex(goalLabel));
+
+		// TODO: Create a new graph...
+
+		// Creates the search problem and inits the algortihm
+		SearchProblem prob = new SearchProblem(init, goal);
+		SearchAlgorithm alg = null;
+		switch (algID) {
+			case BreadthFirstSearch:
+				alg = new BreadthFirstSearch(prob);
+				break;
+			case DepthFirstSearch:
+				alg = new DepthFirstSearch(prob);
+				break;
+			case UniformCostSearch:
+				alg = new UniformCostSearch(prob);
+				break;
+			case GreedySearch:
+				alg = new GreedySearch(prob);
+				break;
+			case AStarSearch:
+				alg = new AStarSearch(prob);
+				break;
+			default:
+				System.out.println("This algorithm is currently not implemented!");
+		}
+
+		// Just to not create errors
 		return null;
 	}
 
