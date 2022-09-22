@@ -1,0 +1,150 @@
+Aula Prática1 - Ex2
+
+AStarSearch
+    Timisoara - Neamt
+        ******************* SOLUTION ********************
+        Node Expansions: 17
+        Nodes Generated: 43
+        State Repetitions: 22
+        Runtime (ms):  2,563 
+        | Timisoara |    0 | [Timisoara, Lugoj] -> 54
+        | Lugoj     |   54 | [Lugoj, Mehadia] -> 94
+        | Mehadia   |  148 | [Mehadia, Dobreta] -> 37
+        | Dobreta   |  185 | [Dobreta, Craiova] -> 96
+        | Craiova   |  281 | [Craiova, Pitesti] -> 103
+        | Pitesti   |  384 | [Pitesti, Bucharest] -> 108
+        | Bucharest |  492 | [Bucharest, Urziceni] -> 52
+        | Urziceni  |  544 | [Urziceni, Vaslui] -> 229
+        | Vaslui    |  773 | [Vaslui, Iasi] -> 58
+        | Iasi      |  831 | [Iasi, Neamt] -> 94
+        | Neamt     |  925 | 
+        *************************************************
+
+BreadthFirstSearch
+    Arad - Bucharest
+        ******************* SOLUTION ********************
+        Node Expansions: 8
+        Nodes Generated: 21
+        State Repetitions: 4
+        Runtime (ms):  1,341 
+        | Arad      |    0 | [Arad, Sibiu] -> 221
+        | Sibiu     |  221 | [Sibiu, Fagaras] -> 65
+        | Fagaras   |  286 | [Fagaras, Bucharest] -> 180
+        | Bucharest |  466 | 
+        *************************************************
+
+    Bucharest - Oradea
+        ******************* SOLUTION ********************
+        Node Expansions: 11
+        Nodes Generated: 31
+        State Repetitions: 5
+        Runtime (ms):  1,475 
+        | Bucharest |    0 | [Bucharest, Fagaras] -> 180
+        | Fagaras   |  180 | [Fagaras, Sibiu] -> 65
+        | Sibiu     |  245 | [Sibiu, Oradea] -> 218
+        | Oradea    |  463 | 
+        *************************************************
+
+    Oradea - Bucharest
+        ******************* SOLUTION ********************
+        Node Expansions: 7
+        Nodes Generated: 19
+        State Repetitions: 5
+        Runtime (ms):  0,971 
+        | Oradea    |    0 | [Oradea, Sibiu] -> 218
+        | Sibiu     |  218 | [Sibiu, Fagaras] -> 65
+        | Fagaras   |  283 | [Fagaras, Bucharest] -> 180
+        | Bucharest |  463 | 
+        *************************************************
+
+    Timisoara - Neamt
+        ******************* SOLUTION ********************
+        Node Expansions: 19
+        Nodes Generated: 46
+        State Repetitions: 25
+        Runtime (ms):  1,190 
+        | Timisoara |    0 | [Timisoara, Arad] -> 49
+        | Arad      |   49 | [Arad, Sibiu] -> 221
+        | Sibiu     |  270 | [Sibiu, Fagaras] -> 65
+        | Fagaras   |  335 | [Fagaras, Bucharest] -> 180
+        | Bucharest |  515 | [Bucharest, Urziceni] -> 52
+        | Urziceni  |  567 | [Urziceni, Vaslui] -> 229
+        | Vaslui    |  796 | [Vaslui, Iasi] -> 58
+        | Iasi      |  854 | [Iasi, Neamt] -> 94
+        | Neamt     |  948 | 
+        *************************************************
+
+
+DepthFirstSearch
+    Arad - Bucharest
+        ******************* SOLUTION ********************
+        Node Expansions: 3
+        Nodes Generated: 9
+        State Repetitions: 1
+        Runtime (ms):  1,426 
+        | Arad      |    0 | [Arad, Sibiu] -> 221
+        | Sibiu     |  221 | [Sibiu, Fagaras] -> 65
+        | Fagaras   |  286 | [Fagaras, Bucharest] -> 180
+        | Bucharest |  466 | 
+        *************************************************
+
+    Bucharest - Oradea
+        ******************* SOLUTION ********************
+        Node Expansions: 14
+        Nodes Generated: 38
+        State Repetitions: 18
+        Runtime (ms):  1,573 
+        | Bucharest |    0 | [Bucharest, Fagaras] -> 180
+        | Fagaras   |  180 | [Fagaras, Sibiu] -> 65
+        | Sibiu     |  245 | [Sibiu, Arad] -> 221
+        | Arad      |  466 | [Arad, Zerind] -> 51
+        | Zerind    |  517 | [Zerind, Oradea] -> 56
+        | Oradea    |  573 | 
+        *************************************************
+
+    Oradea - Bucharest
+        ******************* SOLUTION ********************
+        Node Expansions: 9
+        Nodes Generated: 23
+        State Repetitions: 3
+        Runtime (ms):  1,426 
+        | Oradea    |    0 | [Oradea, Sibiu] -> 218
+        | Sibiu     |  218 | [Sibiu, Arad] -> 221
+        | Arad      |  439 | [Arad, Timisoara] -> 49
+        | Timisoara |  488 | [Timisoara, Lugoj] -> 54
+        | Lugoj     |  542 | [Lugoj, Mehadia] -> 94
+        | Mehadia   |  636 | [Mehadia, Dobreta] -> 37
+        | Dobreta   |  673 | [Dobreta, Craiova] -> 96
+        | Craiova   |  769 | [Craiova, Pitesti] -> 103
+        | Pitesti   |  872 | [Pitesti, Bucharest] -> 108
+        | Bucharest |  980 | 
+        *************************************************
+
+    Timisoara - Neamt
+
+GraphFirstSearch
+    Arad - Bucharest
+
+    Bucharest - Oradea
+
+    Oradea - Bucharest
+    
+    Timisoara - Neamt
+
+GreedySearch
+    Arad - Bucharest
+
+    Bucharest - Oradea
+
+    Oradea - Bucharest
+    
+    Timisoara - Neamt
+
+DUniformCostSearch
+    Arad - Bucharest
+
+    Bucharest - Oradea
+
+    Oradea - Bucharest
+    
+    Timisoara - Neamt
