@@ -8,8 +8,10 @@ public class Main {
         Graph graph = Romenia.defineGraph();
         graph.showLinks();
         graph.showSets();
-        Node n;
-        n = graph.searchSolution("Timisoara", "Neamt", Algorithms.AStarSearch);
-        graph.showSolution(n);
+
+        graph.searchSolution("Arad", "Banat", "Neamt", Algorithms.AStarSearch);
+        //Node n;
+        //n = graph.searchSolution("Timisoara", "Neamt", Algorithms.AStarSearch);
+        //graph.showSolution(n);
     }
 }

@@ -19,7 +19,7 @@ public class Romenia {
         g.addVertex("Mehadia", 44.90411, 22.36452);
         g.addVertex("Neamt", 46.97587, 26.38188);
         g.addVertex("Oradea", 47.04650, 21.91894);
-        g.addVertex("PitestiIA_Romenia_SearchProblem", 44.85648, 24.86918);
+        g.addVertex("Pitesti", 44.85648, 24.86918);
         g.addVertex("R. Vilcea", 45.09968, 24.36932);
         g.addVertex("Sibiu", 45.79833, 24.12558);
         g.addVertex("Timisoara", 45.74887, 21.20868);
