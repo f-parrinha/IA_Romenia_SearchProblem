@@ -9,9 +9,8 @@ public class Main {
         graph.showLinks();
         graph.showSets();
 
-        graph.searchSolution("Arad", "Banat", "Neamt", Algorithms.AStarSearch);
-        //Node n;
-        //n = graph.searchSolution("Timisoara", "Neamt", Algorithms.AStarSearch);
-        //graph.showSolution(n);
+        Node n;
+        n = graph.searchSolution("Arad", "Dobrogea", "Bucharest", Algorithms.AStarSearch);
+        graph.showSolution(n);
     }
 }

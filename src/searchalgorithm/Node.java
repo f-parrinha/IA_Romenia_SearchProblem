@@ -41,7 +41,7 @@ public class Node {
 	public Node getParent() {
 		return parent;
 	}
-	
+
 	public double getPathCost() {
 		return pathCost;
 	}
