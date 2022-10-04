@@ -222,6 +222,13 @@ public class Graph {
 		starters.add(initLabel);
 
 			for (String region : midLabel) {
+				// Add edges between cities from the same region
+				/*int count = 0;
+				while (count+1 < starters.size()) {
+					double cost = this.searchSolution(starters.get(count), starters.get(count+1), algID).getPathCost();
+					tempGraph.addEdge(starters.get(count), starters.get(count+1), cost);
+					count++;
+				}*/
 
 				Set<String> set = new HashSet<>();
 				Set<Vertex> midVertex = this.getVertexSet(region).getVertices();
