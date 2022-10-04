@@ -153,11 +153,8 @@ public class Graph {
 
 		// Adds all vertexes from region
 		Set<Vertex> midVertex = this.getVertexSet(midLabel).getVertices();
-		Iterator<Vertex> it = midVertex.iterator();
-		while(it.hasNext()){
+		for (Vertex v : midVertex) {
 			// Gets mid vertex (vertex of one of the cities that are in the region)
-			Vertex v = it.next();
-
 			// Calculates the cost of the transition between init vertex and mid vertex (v) and adds the edge
 			double costToMid = this.searchSolution(initLabel, v.getLabel(), algID).getPathCost();
 			tempGraph.addVertex(v.getLabel(), v.getLatitude(), v.getLongitude());
@@ -189,23 +186,94 @@ public class Graph {
 		SearchProblem prob = new SearchProblem(init, goal);
 		SearchAlgorithm alg = null;
 		switch (algID) {
-			case BreadthFirstSearch:
-				alg = new BreadthFirstSearch(prob);
-				break;
-			case DepthFirstSearch:
-				alg = new DepthFirstSearch(prob);
-				break;
-			case UniformCostSearch:
-				alg = new UniformCostSearch(prob);
-				break;
-			case GreedySearch:
-				alg = new GreedySearch(prob);
-				break;
-			case AStarSearch:
-				alg = new AStarSearch(prob);
-				break;
-			default:
-				System.out.println("This algorithm is currently not implemented!");
+			case BreadthFirstSearch -> alg = new BreadthFirstSearch(prob);
+			case DepthFirstSearch -> alg = new DepthFirstSearch(prob);
+			case UniformCostSearch -> alg = new UniformCostSearch(prob);
+			case GreedySearch -> alg = new GreedySearch(prob);
+			case AStarSearch -> alg = new AStarSearch(prob);
+			default -> System.out.println("This algorithm is currently not implemented!");
+		}
+		Node n = alg.searchSolution();
+		Map<String, Number> m = alg.getMetrics();
+		this.expansions += (long) m.get("Node Expansions");
+		this.generated += (long) m.get("Nodes Generated");
+		this.repeated += (long) m.get("State repetitions");
+		this.time += (double) m.get("Runtime (ms)");
+		return n;
+	}
+
+	/**
+	 * Creates a new graph from the main graph that will contain only the choosen regions and init and goal vertexes
+	 * @param initLabel - the label of the start position
+	 * @param midLabel - the label of the region
+	 * @param goalLabel - the label of the goal position
+	 * @param algID - the id of the algorithm to use
+	 * @return graph
+	 */
+	private Graph createGraphWithRegion(String initLabel, List<String> midLabel, String goalLabel, Algorithms algID){
+		// Creates the new graph
+		Graph tempGraph = new Graph();
+
+		// Adds the last and the first vertex
+		tempGraph.addVertex(initLabel, this.getVertex(initLabel).getLatitude(), this.getVertex(initLabel).getLongitude());
+		tempGraph.addVertex(goalLabel, this.getVertex(goalLabel).getLatitude(), this.getVertex(goalLabel).getLongitude());
+
+		List<String> starters = new LinkedList<>();
+		starters.add(initLabel);
+
+			for (String region : midLabel) {
+
+				Set<String> set = new HashSet<>();
+				Set<Vertex> midVertex = this.getVertexSet(region).getVertices();
+
+				while (!starters.isEmpty()) {
+					for (Vertex v : midVertex) {
+						set.add(v.getLabel());
+						double cost = this.searchSolution(starters.get(0), v.getLabel(), algID).getPathCost();
+						tempGraph.addVertex(v.getLabel(), v.getLatitude(), v.getLongitude());
+						tempGraph.addEdge(starters.get(0), v.getLabel(), cost);
+					}
+					starters.remove(0);
+				}
+				starters.addAll(set);
+			}
+
+			while (!starters.isEmpty()){
+				Vertex v = this.getVertex(starters.remove(0));
+				double cost = this.searchSolution(v.getLabel(), goalLabel, algID).getPathCost();
+				tempGraph.addEdge(v.getLabel(), goalLabel, cost);
+			}
+
+
+		tempGraph.showLinks();
+
+		return tempGraph;
+	}
+
+	/**
+	 * Searches for a solution that passes through a certain region
+	 * @param initLabel - the label of the start position
+	 * @param midLabel - the label of the region
+	 * @param goalLabel - the label of the goal position
+	 * @param algID - the id of the algorithm to use
+	 * @return node (head of the path)
+	 */
+	public Node searchSolution(String initLabel, List<String> midLabel, String goalLabel, Algorithms algID){
+		// Gets a new graph
+		Graph newGraph = createGraphWithRegion(initLabel, midLabel, goalLabel, algID);
+
+		// Creates the solution
+		State init = new State(newGraph.getVertex(initLabel));
+		State goal = new State(newGraph.getVertex(goalLabel));
+		SearchProblem prob = new SearchProblem(init, goal);
+		SearchAlgorithm alg = null;
+		switch (algID) {
+			case BreadthFirstSearch -> alg = new BreadthFirstSearch(prob);
+			case DepthFirstSearch -> alg = new DepthFirstSearch(prob);
+			case UniformCostSearch -> alg = new UniformCostSearch(prob);
+			case GreedySearch -> alg = new GreedySearch(prob);
+			case AStarSearch -> alg = new AStarSearch(prob);
+			default -> System.out.println("This algorithm is currently not implemented!");
 		}
 		Node n = alg.searchSolution();
 		Map<String, Number> m = alg.getMetrics();
