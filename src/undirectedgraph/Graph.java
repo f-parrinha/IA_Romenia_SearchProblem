@@ -237,7 +237,9 @@ public class Graph {
 					for (Vertex v : midVertex) {
 						set.add(v.getLabel());
 						double cost = this.searchSolution(starters.get(0), v.getLabel(), algID).getPathCost();
-						tempGraph.addVertex(v.getLabel(), v.getLatitude(), v.getLongitude());
+						if(tempGraph.getVertex(v.getLabel()) == null) {
+							tempGraph.addVertex(v.getLabel(), v.getLatitude(), v.getLongitude());
+						}
 						tempGraph.addEdge(starters.get(0), v.getLabel(), cost);
 					}
 					starters.remove(0);
