@@ -9,15 +9,17 @@ public class Main {
 
     public static void main(String[] args) {
         Graph graph = Romenia.defineGraph();
-        //graph.showLinks();
-        //graph.showSets();
+        graph.showLinks();
+        graph.showSets();
         List<String> myList = new LinkedList<>();
-        myList.add("Dobrogea");
-        myList.add("Banat");
+
+        myList.add("Oltenia");
+        myList.add("Transilvania");
+        myList.add("Muntenia");
 
         Node n;
-        n = graph.searchSolution("Arad", myList, "Bucharest", Algorithms.AStarSearch);
-        System.out.println(n.getPathCost());
+        n = graph.searchSolution("Craiova", "Iasi", Algorithms.AStarSearch);
+
         graph.showSolution(n);
     }
 }

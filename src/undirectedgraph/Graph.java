@@ -218,21 +218,15 @@ public class Graph {
 		tempGraph.addVertex(initLabel, this.getVertex(initLabel).getLatitude(), this.getVertex(initLabel).getLongitude());
 		tempGraph.addVertex(goalLabel, this.getVertex(goalLabel).getLatitude(), this.getVertex(goalLabel).getLongitude());
 
+		// Vertex to be processed in each loop
 		List<String> starters = new LinkedList<>();
 		starters.add(initLabel);
-
+			// process each region
 			for (String region : midLabel) {
-				// Add edges between cities from the same region
-				/*int count = 0;
-				while (count+1 < starters.size()) {
-					double cost = this.searchSolution(starters.get(count), starters.get(count+1), algID).getPathCost();
-					tempGraph.addEdge(starters.get(count), starters.get(count+1), cost);
-					count++;
-				}*/
-
+				// Set is used to reset starters in each loop
 				Set<String> set = new HashSet<>();
 				Set<Vertex> midVertex = this.getVertexSet(region).getVertices();
-
+				// Create all edges
 				while (!starters.isEmpty()) {
 					for (Vertex v : midVertex) {
 						set.add(v.getLabel());
@@ -244,18 +238,15 @@ public class Graph {
 					}
 					starters.remove(0);
 				}
+				// reset starters
 				starters.addAll(set);
 			}
-
+			// end the graph with goalLabel
 			while (!starters.isEmpty()){
 				Vertex v = this.getVertex(starters.remove(0));
 				double cost = this.searchSolution(v.getLabel(), goalLabel, algID).getPathCost();
 				tempGraph.addEdge(v.getLabel(), goalLabel, cost);
 			}
-
-
-		tempGraph.showLinks();
-
 		return tempGraph;
 	}
 
@@ -269,6 +260,7 @@ public class Graph {
 	 */
 	public Node searchSolution(String initLabel, List<String> midLabel, String goalLabel, Algorithms algID){
 		// Gets a new graph
+
 		Graph newGraph = createGraphWithRegion(initLabel, midLabel, goalLabel, algID);
 
 		// Creates the solution
